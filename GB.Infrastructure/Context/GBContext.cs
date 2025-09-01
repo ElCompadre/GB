@@ -13,22 +13,22 @@ public class GBContext : DbContext, IGBContext
     public DbSet<Brasserie> Brasseries { get; set; }
     public DbSet<Grossiste> Grossistes { get; set; }
     public DbSet<Biere> Bieres { get; set; }
-    public DbSet<GrossisteBrasserie> GrossisteBrasseries { get; set; }
+    public DbSet<GrossisteBiere> GrossisteBieres { get; set; }
 
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<GrossisteBrasserie>()
+        modelBuilder.Entity<GrossisteBiere>()
             .HasKey(gb => new { gb.GrossisteId, gb.BiereId });
         
-        modelBuilder.Entity<GrossisteBrasserie>()
+        modelBuilder.Entity<GrossisteBiere>()
             .HasOne(gb => gb.Grossiste)
-            .WithMany(g => g.GrossisteBrasseries)
+            .WithMany(g => g.GrossisteBieres)
             .HasForeignKey(gb => gb.GrossisteId);
         
-        modelBuilder.Entity<GrossisteBrasserie>()
+        modelBuilder.Entity<GrossisteBiere>()
             .HasOne(gb => gb.Biere)
-            .WithMany(b => b.GrossisteBrasseries)
+            .WithMany(b => b.GrossisteBieres)
             .HasForeignKey(gb => gb.BiereId);
         
         modelBuilder.Entity<Biere>()

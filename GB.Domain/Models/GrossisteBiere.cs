@@ -1,6 +1,6 @@
 ﻿namespace GB.Domain.Models;
 
-public class GrossisteBrasserie
+public class GrossisteBiere
 {
     public int GrossisteId { get; set; }
     public int BiereId { get; set; }

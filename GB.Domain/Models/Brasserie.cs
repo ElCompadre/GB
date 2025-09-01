@@ -12,5 +12,5 @@ public class Brasserie
     [Required] [MaxLength(100)] public string Nom { get; set; } = string.Empty;
 
     public virtual ICollection<Biere> Bieres { get; set; } = new List<Biere>();
-    public virtual ICollection<GrossisteBrasserie> GrossisteBrasseries { get; set; } = new List<GrossisteBrasserie>();
+    public virtual ICollection<GrossisteBiere> GrossisteBrasseries { get; set; } = new List<GrossisteBiere>();
 }

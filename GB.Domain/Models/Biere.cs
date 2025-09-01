@@ -20,5 +20,5 @@ public class Biere
     public int BrasserieId { get; set; }
 
     public virtual Brasserie Brasserie { get; set; } = null!;
-    public virtual ICollection<GrossisteBrasserie> GrossisteBrasseries { get; set; } = new List<GrossisteBrasserie>();
+    public virtual ICollection<GrossisteBiere> GrossisteBieres { get; set; } = new List<GrossisteBiere>();
 }
