@@ -1,14 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GB", "GB\GB.csproj", "{0A469379-9286-426F-94F2-2CF76771F376}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GB.API", "GB.API\GB.API.csproj", "{0A469379-9286-426F-94F2-2CF76771F376}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GB.Infrastructure", "GB.Infrastructure\GB.Infrastructure.csproj", "{5B76A12D-8FD4-40F4-AD0B-A010C49EEC63}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GB.Domain", "GB.Domain\GB.Domain.csproj", "{06CBBB39-3AA8-4801-AC89-C49E69658792}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GB.Application", "GB.Application\GB.Application.csproj", "{3CC04F60-01F2-4E50-8D54-B44C70124349}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GB.Presentation", "GB.Presentation\GB.Presentation.csproj", "{C012F14A-F6C8-4A5B-A516-7022F73B224E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,9 +30,5 @@ Global
 		{3CC04F60-01F2-4E50-8D54-B44C70124349}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CC04F60-01F2-4E50-8D54-B44C70124349}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CC04F60-01F2-4E50-8D54-B44C70124349}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C012F14A-F6C8-4A5B-A516-7022F73B224E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C012F14A-F6C8-4A5B-A516-7022F73B224E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C012F14A-F6C8-4A5B-A516-7022F73B224E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C012F14A-F6C8-4A5B-A516-7022F73B224E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
