@@ -1,13 +1,13 @@
-﻿using GB.Domain.Models;
+﻿using GB.Application.Interfaces;
+using GB.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace GB.Application.Context;
+namespace GB.Infrastructure.Context;
 
-public class GBContext : DbContext
+public class GBContext : DbContext, IGBContext
 {
     public GBContext(DbContextOptions<GBContext> options)  : base(options)
     {
-        
     }
 
     public DbSet<Brasserie> Brasseries { get; set; }
@@ -15,11 +15,11 @@ public class GBContext : DbContext
     public DbSet<Biere> Bieres { get; set; }
     public DbSet<GrossisteBrasserie> GrossisteBrasseries { get; set; }
 
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Entité avec une clé primaire composite
         modelBuilder.Entity<GrossisteBrasserie>()
-            .HasKey(gb => new { gb.GrossisteId, gb.BrasserieId });
+            .HasKey(gb => new { gb.GrossisteId, gb.BiereId });
         
         modelBuilder.Entity<GrossisteBrasserie>()
             .HasOne(gb => gb.Grossiste)
@@ -27,9 +27,9 @@ public class GBContext : DbContext
             .HasForeignKey(gb => gb.GrossisteId);
         
         modelBuilder.Entity<GrossisteBrasserie>()
-            .HasOne(gb => gb.Brasserie)
+            .HasOne(gb => gb.Biere)
             .WithMany(b => b.GrossisteBrasseries)
-            .HasForeignKey(gb => gb.BrasserieId);
+            .HasForeignKey(gb => gb.BiereId);
         
         modelBuilder.Entity<Biere>()
             .HasOne(b => b.Brasserie)
@@ -37,10 +37,12 @@ public class GBContext : DbContext
             .HasForeignKey(b => b.BrasserieId);
         
         modelBuilder.Entity<Biere>()
-            .Property(b => b.Prix);
+            .Property(b => b.Prix)
+            .HasColumnType("decimal(10,3)");
         
         modelBuilder.Entity<Biere>()
-            .Property(b => b.DegresAlcool);
+            .Property(b => b.DegresAlcool)
+            .HasColumnType("decimal(10,3)");
         
         base.OnModelCreating(modelBuilder);
     }

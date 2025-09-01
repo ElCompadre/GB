@@ -11,11 +11,14 @@ public class Biere
 
     [Required] [MaxLength(100)] public string Nom { get; set; } = string.Empty;
 
+    [Column(TypeName ="decimal(10,3)")]
     public decimal DegresAlcool { get; set; }
 
+    [Column(TypeName ="decimal(10,3)")]
     public decimal Prix { get; set; }
 
     public int BrasserieId { get; set; }
 
     public virtual Brasserie Brasserie { get; set; } = null!;
+    public virtual ICollection<GrossisteBrasserie> GrossisteBrasseries { get; set; } = new List<GrossisteBrasserie>();
 }
