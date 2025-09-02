@@ -1,5 +1,5 @@
 ﻿using GB.Application.Interfaces;
-using GB.Domain.Models;
+using GB.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace GB.Infrastructure.Context;

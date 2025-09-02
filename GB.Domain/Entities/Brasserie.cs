@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GB.Domain.Models;
+namespace GB.Domain.Entities;
 
 public class Brasserie
 {

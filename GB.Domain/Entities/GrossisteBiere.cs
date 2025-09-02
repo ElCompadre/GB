@@ -1,4 +1,4 @@
-﻿namespace GB.Domain.Models;
+﻿namespace GB.Domain.Entities;
 
 public class GrossisteBiere
 {
