@@ -4,7 +4,6 @@ namespace GB.Application.Interfaces.Repositories;
 
 public interface IBiereRepository
 {
-    public ICollection<BiereDTO> GetAllByBrasserie(int brasserieId);
-    public BiereDTO Insert(BiereDTO biereDto);
+    public Task<BiereDTO> AddAsync(BiereDTO biereDto, CancellationToken cancellation = default);
     public void Delete(int biereId);
 }

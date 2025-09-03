@@ -14,8 +14,16 @@ public class GBContext : DbContext, IGBContext
     public DbSet<Grossiste> Grossistes { get; set; }
     public DbSet<Biere> Bieres { get; set; }
     public DbSet<GrossisteBiere> GrossisteBieres { get; set; }
+    public void SaveChanges()
+    {
+        base.SaveChanges();
+    }
 
-    
+    public Task SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        return base.SaveChangesAsync(cancellationToken);
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<GrossisteBiere>()

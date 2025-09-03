@@ -9,6 +9,10 @@ public class ApplicationProfile : Profile
     public ApplicationProfile()
     {
         CreateMap<Brasserie, BrasserieDTO>().ReverseMap();
+        CreateMap<CreateBrasserieModel, BrasserieDTO>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.Bieres, opt => opt.Ignore())
+            .ForMember(dest => dest.GrossisteBrasseries, opt => opt.Ignore());
         CreateMap<Biere, BiereDTO>().ReverseMap();
         CreateMap<Grossiste, GrossisteDTO>().ReverseMap();
         CreateMap<GrossisteBiere, GrossisteBiereDTO>().ReverseMap();

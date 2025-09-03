@@ -1,0 +1,8 @@
+﻿### POST request to example server
+POST {{baseUrl}}/api/Brasserie
+Content-Type: application/json
+
+{
+  "Nom": "Abbaye de Leffe"
+}
+###

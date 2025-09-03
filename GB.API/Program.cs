@@ -1,4 +1,5 @@
 using AutoMapper;
+using GB.Application;
 using GB.Application.Profiles;
 using GB.Infrastructure;
 using Serilog;
@@ -6,11 +7,10 @@ using Serilog.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddGBContext(builder.Configuration);
+builder.Services.AddServices();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

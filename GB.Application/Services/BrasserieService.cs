@@ -15,4 +15,9 @@ public class BrasserieService(IBrasserieRepository brasserieRepository) : IBrass
     {
         throw new NotImplementedException();
     }
+
+    public async Task<BrasserieDTO> AddAsync(BrasserieDTO brasserieDto, CancellationToken cancellation = default)
+    {
+        return await brasserieRepository.AddAsync(brasserieDto, cancellation);
+    }
 }
