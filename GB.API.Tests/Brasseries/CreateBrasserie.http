@@ -1,5 +1,5 @@
 ﻿### POST request to example server
-POST {{baseUrl}}/api/Brasserie
+POST {{baseUrl}}/api/Brasseries
 Content-Type: application/json
 
 {

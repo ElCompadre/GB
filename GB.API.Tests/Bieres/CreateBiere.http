@@ -1,0 +1,23 @@
+﻿### POST request to example server
+POST {{baseUrl}}/api/Bieres
+Content-Type: application/json
+
+{
+  "Nom": "Leffe blonde",
+  "DegresAlcool": 6.6,
+  "Prix": 2.20,
+  "BrasserieId": 1
+}
+###
+
+### POST request to example server
+POST {{baseUrl}}/api/Bieres
+Content-Type: application/json
+
+{
+  "Nom": "Leffe brune",
+  "DegresAlcool": 6.5,
+  "Prix": 2.30,
+  "BrasserieId": 1
+}
+###

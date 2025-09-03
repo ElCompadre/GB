@@ -1,6 +1,7 @@
 ﻿using GB.Application.Interfaces;
 using GB.Application.Interfaces.Repositories;
 using GB.Infrastructure.Context;
+using GB.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,8 @@ public static class GBContextConfiguration
                b => b.MigrationsAssembly(typeof(GBContext).Assembly.FullName)));
         
         services.AddScoped<IBrasserieRepository, BrasserieRepository>();
+        services.AddScoped<IBiereRepository, BiereRepository>();
+        services.AddScoped<IGrossisteBiereRepository, GrossisteBiereRepository>();
         return services;
     }
 }
