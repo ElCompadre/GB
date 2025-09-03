@@ -2,6 +2,7 @@ using AutoMapper;
 using GB.Application;
 using GB.Application.Profiles;
 using GB.Infrastructure;
+using GB.Middlewares;
 using Serilog;
 using Serilog.Extensions.Logging;
 
@@ -24,6 +25,8 @@ mapperConfig.AssertConfigurationIsValid();
 
 builder.Services.AddAutoMapper(cfg => cfg.AddProfile<ApplicationProfile>());
 
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,6 +39,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<GlobalErrorMiddleware>();
 
 app.MapControllers();
 

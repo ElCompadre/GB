@@ -1,9 +1,9 @@
-﻿using GB.Application.Interfaces.Repositories;
-using GB.Infrastructure.Context;
+﻿using GB.Application.Interfaces;
+using GB.Application.Interfaces.Repositories;
 
 namespace GB.Infrastructure.Repositories;
 
-public class GrossisteBiereRepository(GBContext context) : IGrossisteBiereRepository
+public class GrossisteBiereRepository(IGBContext context) : IGrossisteBiereRepository
 {
     public void DeleteLinkBiereToGrossiste(int biereId)
     {

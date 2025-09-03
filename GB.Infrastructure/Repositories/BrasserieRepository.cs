@@ -23,4 +23,9 @@ public class BrasserieRepository(IGBContext context, IMapper mapper) : IBrasseri
         await context.SaveChangesAsync(cancellationToken);
         return mapper.Map<BrasserieDTO>(addedBrasserie.Entity);
     }
+
+    public bool CheckIfExists(BrasserieDTO brasserieDto)
+    {
+        return context.Brasseries.Any(b => b.Id == brasserieDto.Id || b.Nom.Equals(brasserieDto.Nom, StringComparison.CurrentCultureIgnoreCase));
+    }
 }

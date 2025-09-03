@@ -27,4 +27,9 @@ public class BiereRepository(IGBContext context, IMapper mapper, ILogger<IBiereR
         context.Bieres.Remove(biere);
         context.SaveChanges();
     }
+
+    public bool CheckIfExists(BiereDTO biereDto)
+    {
+        return context.Bieres.Any(b => (biereDto.Id.HasValue && b.Id == biereDto.Id) || b.Nom == biereDto.Nom);
+    }
 }

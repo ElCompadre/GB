@@ -18,6 +18,7 @@ public static class GBContextConfiguration
         
         services.AddScoped<IBrasserieRepository, BrasserieRepository>();
         services.AddScoped<IBiereRepository, BiereRepository>();
+        services.AddScoped<IGrossisteRepository, GrossisteRepository>();
         services.AddScoped<IGrossisteBiereRepository, GrossisteBiereRepository>();
         return services;
     }

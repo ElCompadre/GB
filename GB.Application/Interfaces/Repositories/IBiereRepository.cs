@@ -6,4 +6,6 @@ public interface IBiereRepository
 {
     public Task<BiereDTO> AddAsync(BiereDTO biereDto, CancellationToken cancellation = default);
     public void Delete(int biereId);
+    
+    public bool CheckIfExists(BiereDTO biereDto);
 }

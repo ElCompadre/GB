@@ -1,71 +1,59 @@
-﻿using System.Net;
-using System.Text.Json;
-using GB.Domain.Models;
+﻿using GB.Domain.Errors;
+using Microsoft.AspNetCore.Mvc;
 
-public class GlobalErrorMiddleware
+namespace GB.Middlewares;
+
+public class GlobalErrorMiddleware(RequestDelegate next, ILogger<GlobalErrorMiddleware> logger)
 {
-    private readonly RequestDelegate _next;
-    private readonly ILogger<GlobalErrorMiddleware> _logger;
-
-    public GlobalErrorMiddleware(RequestDelegate next, ILogger<GlobalErrorMiddleware> logger)
-    {
-        _next = next;
-        _logger = logger;
-    }
-
     public async Task InvokeAsync(HttpContext context)
     {
         try
         {
-
+            await next(context);
         }
         catch (Exception exception)
         {
-            _logger.LogError(exception, "Une erreur non gérée s'est produite: {Message}", exception.Message );
+            logger.LogError(exception, "Une erreur non gérée s'est produite: {Message}", exception.Message );
             await HandleExceptionAsync(context, exception);
         }
     }
     
     private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
-        {
-            context.Response.ContentType = "application/json";
+    {
+        context.Response.ContentType = "application/json";
             
-            var response = new ErrorResponse();
+        var problemDetails = new ProblemDetails();
 
-            switch (exception)
-            {
-                case ArgumentNullException:
-                case ArgumentException:
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    response.Message = "Requête invalide";
-                    response.Details = exception.Message;
-                    break;
+        switch (exception)
+        {
+            case ArgumentNullException:
+            case ArgumentException:
+            case EntityAlreadyExistsException:
+                problemDetails.Status = StatusCodes.Status400BadRequest;
+                problemDetails.Title = "Requête invalide";
+                problemDetails.Detail = exception.Message;
+                break;
 
-                case KeyNotFoundException:
-                    response.StatusCode = (int)HttpStatusCode.NotFound;
-                    response.Message = "Ressource non trouvée";
-                    break;
+            case KeyNotFoundException:
+                problemDetails.Status = StatusCodes.Status404NotFound;
+                problemDetails.Title = "Ressource non trouvée";
+                break;
 
-                default:
-                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    response.Message = "Une erreur interne s'est produite";
+            default:
+                problemDetails.Status = StatusCodes.Status500InternalServerError;
+                problemDetails.Title = "Une erreur interne s'est produite";
                     
-                    // En production, éviter d'exposer les détails techniques
-                    if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
-                    {
-                        response.Details = exception.Message;
-                        response.StackTrace = exception.StackTrace;
-                    }
-                    break;
-            }
-
-            context.Response.StatusCode = response.StatusCode;
-
-            var jsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            });
-
-            await context.Response.WriteAsync(jsonResponse);
+                // En production, on va éviter d'exposer les détails techniques
+                if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+                {
+                    problemDetails.Detail = exception.Message;
+                    problemDetails.Instance = exception.StackTrace;
+                }
+                break;
         }
+
+        context.Response.StatusCode = problemDetails.Status.GetValueOrDefault();
+
+        await context.Response.WriteAsJsonAsync(problemDetails);
+    }
 }
