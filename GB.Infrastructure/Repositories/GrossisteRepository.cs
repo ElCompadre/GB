@@ -17,6 +17,6 @@ public class GrossisteRepository(IGBContext context, IMapper mapper) : IGrossist
 
     public bool CheckIfExists(GrossisteDTO grossisteDto)
     {
-        return context.Grossistes.Any(g => g.Id == grossisteDto.Id || g.Nom.Equals(grossisteDto.Nom, StringComparison.InvariantCultureIgnoreCase));
+        return context.Grossistes.Any(g => (grossisteDto.Id.HasValue && g.Id == grossisteDto.Id) || g.Nom == grossisteDto.Nom);
     }
 }

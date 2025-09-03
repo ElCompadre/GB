@@ -26,6 +26,6 @@ public class BrasserieRepository(IGBContext context, IMapper mapper) : IBrasseri
 
     public bool CheckIfExists(BrasserieDTO brasserieDto)
     {
-        return context.Brasseries.Any(b => b.Id == brasserieDto.Id || b.Nom.Equals(brasserieDto.Nom, StringComparison.CurrentCultureIgnoreCase));
+        return context.Brasseries.Any(b => (brasserieDto.Id.HasValue && b.Id == brasserieDto.Id) || b.Nom == brasserieDto.Nom);
     }
 }

@@ -1,0 +1,19 @@
+﻿### POST request to example server
+POST {{baseUrl}}/api/Grossistes
+Content-Type: application/json
+
+{
+  "Nom": "GeneDrinks"
+}
+
+###
+
+### POST request to example server
+POST {{baseUrl}}/api/Grossistes
+Content-Type: application/json
+
+{
+  "Nom": "HLS"
+}
+
+###

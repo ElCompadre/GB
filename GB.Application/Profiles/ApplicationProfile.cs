@@ -19,6 +19,9 @@ public class ApplicationProfile : Profile
             .ForMember(dest => dest.GrossisteBieres, opt => opt.Ignore())
             .ForMember(dest => dest.Brasserie, opt => opt.Ignore());
         CreateMap<Grossiste, GrossisteDTO>().ReverseMap();
+        CreateMap<CreateGrossisteModel, GrossisteDTO>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.GrossisteBieres, opt => opt.Ignore());
         CreateMap<GrossisteBiere, GrossisteBiereDTO>().ReverseMap();
 
         CreateMap<BrasserieDTO, BrasserieModel>().ReverseMap();

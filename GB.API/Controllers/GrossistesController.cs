@@ -10,9 +10,9 @@ namespace GB.Controllers
     public class GrossistesController(IGrossisteService grossisteService, IMapper mapper) : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> AddAsync([FromBody] GrossisteDTO grossisteDto, CancellationToken cancellation = default)
+        public async Task<IActionResult> AddAsync([FromBody] CreateGrossisteModel createGrossisteModel, CancellationToken cancellation = default)
         {
-            var addedGrossiste = grossisteService.AddAsync(grossisteDto, cancellation);
+            var addedGrossiste = await grossisteService.AddAsync(mapper.Map<GrossisteDTO>(createGrossisteModel), cancellation);
             return Ok(addedGrossiste);
         }
     }
