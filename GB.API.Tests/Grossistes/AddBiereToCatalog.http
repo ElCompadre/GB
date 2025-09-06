@@ -1,0 +1,16 @@
+### POST request to example server
+POST {{baseUrl}}/api/Grossistes/1/Bieres/1
+Content-Type: application/json
+
+###
+
+### POST request to example server
+POST {{baseUrl}}/api/Grossistes/2/Bieres/1
+Content-Type: application/json
+
+###
+### POST request to example server
+POST {{baseUrl}}/api/Grossistes/2/Bieres/2
+Content-Type: application/json
+
+###

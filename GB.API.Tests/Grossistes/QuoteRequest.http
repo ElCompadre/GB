@@ -1,0 +1,17 @@
+### GET request to example server
+POST {{baseUrl}}/api/Grossistes/2
+Content-Type: application/json
+
+{
+  "Items": [
+    {
+      "BiereId": 1,
+      "Quantite": 8
+    },
+    {
+      "BiereId": 2,
+      "Quantite": 11
+    }
+  ]
+}
+###

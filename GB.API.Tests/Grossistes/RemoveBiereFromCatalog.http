@@ -1,0 +1,5 @@
+### GET request to example server
+DELETE {{baseUrl}}/api/Grossistes/{{grossisteId}}/Bieres/{{biereId}}
+Content-Type: application/json
+
+###

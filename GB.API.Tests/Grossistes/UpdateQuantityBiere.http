@@ -1,0 +1,29 @@
+### PUT request to example server
+PUT {{baseUrl}}/api/Grossistes/1/Bieres/1
+Content-Type: application/json
+
+{
+  "quantite": 100
+}
+
+###
+
+### PUT request to example server
+PUT {{baseUrl}}/api/Grossistes/2/Bieres/1
+Content-Type: application/json
+
+{
+  "quantite": 150
+}
+
+###
+
+### PUT request to example server
+PUT {{baseUrl}}/api/Grossistes/2/Bieres/2
+Content-Type: application/json
+
+{
+  "quantite": 100
+}
+
+###
