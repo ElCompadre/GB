@@ -7,18 +7,18 @@ public class Biere
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+    public int Id { get; init; }
 
-    [Required] [MaxLength(100)] public string Nom { get; set; } = string.Empty;
+    [Required] [MaxLength(100)] public string Nom { get; init; } = string.Empty;
 
-    [Column(TypeName ="decimal(10,3)")]
-    public decimal DegresAlcool { get; set; }
+    [Column(TypeName ="decimal(10,2)")]
+    public decimal DegresAlcool { get; init; }
 
-    [Column(TypeName ="decimal(10,3)")]
-    public decimal Prix { get; set; }
+    [Column(TypeName ="decimal(10,2)")]
+    public decimal Prix { get; init; }
 
-    public int BrasserieId { get; set; }
+    public int BrasserieId { get; init; }
 
-    public virtual Brasserie Brasserie { get; set; } = null!;
-    public virtual ICollection<GrossisteBiere> GrossisteBieres { get; set; } = new List<GrossisteBiere>();
+    public virtual Brasserie Brasserie { get; init; } = null!;
+    public virtual ICollection<GrossisteBiere> GrossisteBieres { get; init; } = new List<GrossisteBiere>();
 }

@@ -28,7 +28,7 @@ public class GlobalErrorMiddleware(RequestDelegate next, ILogger<GlobalErrorMidd
         {
             case ArgumentNullException:
             case ArgumentException:
-            case EntityAlreadyExistsException:
+            case BusinessValidationException:
                 problemDetails.Status = StatusCodes.Status400BadRequest;
                 problemDetails.Title = "Requête invalide";
                 problemDetails.Detail = exception.Message;

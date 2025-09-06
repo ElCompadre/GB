@@ -4,22 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GB.Infrastructure.Context;
 
-public class GBContext : DbContext, IGBContext
+public class GBContext(DbContextOptions<GBContext> options) : DbContext(options), IGBContext
 {
-    public GBContext(DbContextOptions<GBContext> options)  : base(options)
-    {
-    }
-
     public DbSet<Brasserie> Brasseries { get; set; }
     public DbSet<Grossiste> Grossistes { get; set; }
     public DbSet<Biere> Bieres { get; set; }
     public DbSet<GrossisteBiere> GrossisteBieres { get; set; }
-    public void SaveChanges()
+    public new void SaveChanges()
     {
         base.SaveChanges();
     }
 
-    public Task SaveChangesAsync(CancellationToken cancellationToken = default)
+    public new Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         return base.SaveChangesAsync(cancellationToken);
     }
@@ -46,11 +42,11 @@ public class GBContext : DbContext, IGBContext
         
         modelBuilder.Entity<Biere>()
             .Property(b => b.Prix)
-            .HasColumnType("decimal(10,3)");
+            .HasColumnType("decimal(10,2)");
         
         modelBuilder.Entity<Biere>()
             .Property(b => b.DegresAlcool)
-            .HasColumnType("decimal(10,3)");
+            .HasColumnType("decimal(10,2)");
         
         base.OnModelCreating(modelBuilder);
     }

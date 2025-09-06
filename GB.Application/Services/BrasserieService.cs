@@ -16,7 +16,7 @@ public class BrasserieService(IBrasserieRepository brasserieRepository) : IBrass
     {
         if (brasserieRepository.CheckIfExists(brasserieDto))
         {
-            throw new EntityAlreadyExistsException("Une brasserie avec cet id ou ce nom existe déjà");
+            throw new BusinessValidationException("Une brasserie avec cet id ou ce nom existe déjà");
         }
         return brasserieRepository.AddAsync(brasserieDto, cancellation);
     }

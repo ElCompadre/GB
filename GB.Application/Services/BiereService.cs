@@ -11,14 +11,14 @@ public class BiereService(IBiereRepository biereRepository, IGrossisteBiereRepos
     {
         if (biereRepository.CheckIfExists(biereDto))
         {
-            throw new EntityAlreadyExistsException("Une bière avec cet id ou ce nom existe déjà");
+            throw new BusinessValidationException("Une bière avec cet id ou ce nom existe déjà");
         }
         return biereRepository.AddAsync(biereDto, cancellationToken);
     }
 
     public void Delete(int biereId)
     {
-        grossisteBiereRepository.DeleteLinkBiereToGrossiste(biereId);
+        grossisteBiereRepository.RemoveBiereFromAllCatalogs(biereId);
         biereRepository.Delete(biereId);
     }
 }

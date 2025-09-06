@@ -7,10 +7,10 @@ public class Grossiste
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
+    public int Id { get; init; }
 
     [Required] 
     [MaxLength(100)]
-    public string Nom { get; set; } = string.Empty;
-    public virtual ICollection<GrossisteBiere> GrossisteBieres { get; set; } = new List<GrossisteBiere>();
+    public string Nom { get; init; } = string.Empty;
+    public virtual ICollection<GrossisteBiere> GrossisteBieres { get; init; } = new List<GrossisteBiere>();
 }

@@ -11,8 +11,7 @@ public class ApplicationProfile : Profile
         CreateMap<Brasserie, BrasserieDTO>().ReverseMap();
         CreateMap<CreateBrasserieModel, BrasserieDTO>()
             .ForMember(dest => dest.Id, opt => opt.Ignore())
-            .ForMember(dest => dest.Bieres, opt => opt.Ignore())
-            .ForMember(dest => dest.GrossisteBrasseries, opt => opt.Ignore());
+            .ForMember(dest => dest.Bieres, opt => opt.Ignore());
         CreateMap<Biere, BiereDTO>().ReverseMap();
         CreateMap<CreateBiereModel, BiereDTO>()
             .ForMember(dest => dest.Id, opt => opt.Ignore())
@@ -33,6 +32,20 @@ public class ApplicationProfile : Profile
                 opt => opt.MapFrom(src => src.GrossisteBieres.Select(gb => gb.Grossiste)));
         CreateMap<GrossisteDTO, GrossisteModel>().ReverseMap();
         CreateMap<GrossisteDTO, GetBrasserieByIdGrossisteResponseModel>();
-        CreateMap<GrossisteBiereDTO, GrossisteBiereModel>().ReverseMap();
+        CreateMap<GrossisteBiereDTO, GrossisteBiereModel>()
+            .ForMember(dest => dest.Quantite, opt => opt.MapFrom(src => src.Stock));
+        CreateMap<GrossisteBiereModel, GrossisteBiereDTO>()
+            .ForMember(dest => dest.Stock, opt => opt.MapFrom(src => src.Quantite));
+
+        CreateMap<QuoteRequestModel, QuoteRequestDTO>()
+            .ForMember(dest => dest.GrossisteId, opt => opt.Ignore());
+        CreateMap<QuoteRequestDTO, QuoteRequestModel>();
+        CreateMap<QuoteRequestItemModel, QuoteRequestItemDTO>().ReverseMap();
+        CreateMap<QuoteResponseDTO, QuoteResponseModel>()
+            .ForMember(dest => dest.TotalHTVA, opt => opt.MapFrom(src => src.PrixTotal));
+        CreateMap<QuoteResponseModel, QuoteResponseDTO>()
+            .ForMember(dest => dest.PrixTotal, opt => opt.MapFrom(src => src.TotalHTVA));
+        CreateMap<QuoteItemResponseModel, QuoteItemResponseDTO>();
+        CreateMap<QuoteItemResponseDTO, QuoteItemResponseModel>();
     }
 }

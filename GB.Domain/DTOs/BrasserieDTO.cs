@@ -7,5 +7,4 @@ public class BrasserieDTO
     public string Nom { get; init; } = string.Empty;
 
     public ICollection<BiereDTO>? Bieres { get; init; } = new List<BiereDTO>();
-    public ICollection<GrossisteBiereDTO>? GrossisteBrasseries { get; init; } = new List<GrossisteBiereDTO>();
 }

@@ -10,8 +10,7 @@ public class BrasserieRepository(IGBContext context, IMapper mapper) : IBrasseri
     public async Task<BrasserieDTO> GetByIdAsync(int brasserieId, CancellationToken cancellationToken = default)
     {
         var brasserie = await context.Brasseries
-            .Include(b => b.Bieres)
-            .Include(b => b.GrossisteBrasseries)
+            .Include(b => b.Bieres).ThenInclude(g => g.GrossisteBieres).ThenInclude(gb => gb.Grossiste)
             .FirstOrDefaultAsync(b => b.Id == brasserieId, cancellationToken);
 
         return mapper.Map<BrasserieDTO>(brasserie);

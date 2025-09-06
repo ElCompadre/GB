@@ -3,7 +3,11 @@
 public interface IGrossisteBiereRepository
 {
     public Task<GrossisteBiereDTO> AddAsync(GrossisteBiereDTO grossisteBiereDto, CancellationToken cancellationToken = default);
-    public void DeleteLinkBiereToGrossiste(int biereId);
+    public void RemoveBiereFromCatalog(int grossisteId, int biereId);
+    public void RemoveBiereFromAllCatalogs(int biereId);
 
-    public bool CheckIfExists(int biereId, int grossisteId);
+    public bool CheckIfExists(int grossisteId, int biereId);
+    public Task UpdateQuantityBiereAsync(GrossisteBiereDTO grossisteBiereDto, CancellationToken cancellation = default);
+    
+    public Task<GrossisteBiereDTO> GetByIdAsync(int grossisteId, int biereId, CancellationToken cancellationToken = default);
 }
